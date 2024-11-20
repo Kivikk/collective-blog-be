@@ -1,8 +1,7 @@
 import { Sequelize } from 'sequelize';
+import pkg from 'pg';
 
 export const sequelize = new Sequelize(process.env.PG_URI);
-
-import pkg from 'pg';
 
 const { Pool } = pkg;
 
