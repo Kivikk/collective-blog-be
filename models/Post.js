@@ -7,20 +7,6 @@ import User from './User.js';
 // Define post model
 
 const Post = sequelize.define('Post', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
-    },
-    author: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: User,
-            key: 'id',
-        },
-    },
     title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -39,6 +25,14 @@ const Post = sequelize.define('Post', {
         allowNull: false,
     },
 });
+
+// Post.belongsTo(User, {
+//     foreignKey: {
+//         name: 'author',
+//         type: DataTypes.INTEGER,
+//         allowNull: false,
+//     },
+// });
 
 Post.sync();
 

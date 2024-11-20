@@ -2,16 +2,11 @@
 
 import { DataTypes } from 'sequelize';
 import sequelize from '../db.js';
+import Post from './Post.js';
 
 // Define user model
 
 const User = sequelize.define('User', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
-    },
     first_name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -20,8 +15,18 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    email_address: {
+    email: {
         type: DataTypes.STRING,
+        allowNull: false,
+    },
+});
+
+// Define relationships
+User.hasMany(Post);
+Post.belongsTo(User, {
+    foreignKey: {
+        name: 'author',
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
 });
