@@ -1,5 +1,9 @@
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize(process.env.PG_URI);
+export const sequelize = new Sequelize(process.env.PG_URI);
 
-export default sequelize;
+import pkg from 'pg';
+
+const { Pool } = pkg;
+
+export const pool = new Pool({ connectionString: process.env.PG_URI });

@@ -1,13 +1,13 @@
 {
-  "name": "node-server-with-pg",
+  "name": "collective-blog-be",
   "version": "1.0.0",
   "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node -r dotenv/config --watch index.js",
+    "dev": "node -r dotenv/config --watch app.js",
     "start": "node app.js",
-    "init": "node -r dotenv/config scripts/initDb.js"
+    "init": "node -r dotenv/config scripts/initDB.js"
   },
   "keywords": [],
   "author": "",
