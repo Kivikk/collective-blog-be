@@ -21,16 +21,4 @@ const User = sequelize.define('User', {
     },
 });
 
-// Define relationships
-User.hasMany(Post);
-Post.belongsTo(User, {
-    foreignKey: {
-        name: 'author',
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-});
-
-User.sync();
-
 export default User;

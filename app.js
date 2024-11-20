@@ -17,6 +17,6 @@ app.use(express.json());
 app.route('/posts').get(getPosts).post(createPost);
 app.route('/posts/:id').get(getPostById).put(updatePost).delete(deletePost);
 
-console.log(process.env.PORT, process.env.PG_URI);
+// console.log(process.env.PORT, process.env.PG_URI);
 
 app.listen(port, () => console.log(`Server is running. Port: ${port}`));
