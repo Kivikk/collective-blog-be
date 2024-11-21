@@ -1,8 +1,11 @@
 import express from 'express';
-import './scripts/initDB.js';
-import './models/initModels.js';
+import { init } from './models/index.js';
+
+import { authRouter } from './routes/authRouter.js';
 import { postsRouter } from './routes/postsRouter.js';
 import { userRouter } from './routes/userRouter.js';
+
+await init();
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -10,6 +13,7 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 
 // routes
+app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/posts', postsRouter);
 

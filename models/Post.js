@@ -1,11 +1,11 @@
 // Sequelize model for a single post
 
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../scripts/initDB.js';
+import DB from '../db.js';
 
 // Define post model
 
-export const Post = sequelize.define('Post', {
+const Post = DB.define('Post', {
     title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -24,3 +24,5 @@ export const Post = sequelize.define('Post', {
         allowNull: false,
     },
 });
+
+export default Post;

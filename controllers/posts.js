@@ -1,7 +1,6 @@
 // Import Post model
 
-import { User } from '../models/User.js';
-import { Post } from '../models/Post.js';
+import { User, Post } from '../models/index.js';
 
 export const getPosts = async (req, res) => {
     try {
@@ -14,20 +13,11 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
     try {
-        //__________________TEMP______________________
-        const userCount = await User.count();
-        console.log(userCount);
-        const user = await User.create({
-            firstName: `firstName${userCount}`,
-            lastName: `lastName${userCount}`,
-            email: `email${userCount}`,
-        });
-        console.log(user.id);
-        //__________________TEMP______________________
         const post = req.body;
-        post.author = user.id;
-        
+        post.user_id = req.userId;
+               
         console.log(post);
+
         if (!post.title || !post.content || !post.cover)
             return res
                 .status(400)
