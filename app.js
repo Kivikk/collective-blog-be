@@ -1,12 +1,8 @@
 import express from 'express';
-// import { pool } from './db.js';
-import {
-    getPosts,
-    getPostById,
-    createPost,
-    updatePost,
-    deletePost,
-} from './controllers/posts.js';
+import './scripts/initDB.js';
+import './models/initModels.js';
+import { postsRouter } from './routes/postsRouter.js';
+import { userRouter } from './routes/userRouter.js';
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -14,8 +10,8 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 
 // routes
-app.route('/posts').get(getPosts).post(createPost);
-app.route('/posts/:id').get(getPostById).put(updatePost).delete(deletePost);
+app.use('/users', userRouter);
+app.use('/posts', postsRouter);
 
 // console.log(process.env.PORT, process.env.PG_URI);
 

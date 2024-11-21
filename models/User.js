@@ -1,17 +1,16 @@
 // Sequelize model for a single user
 
 import { DataTypes } from 'sequelize';
-import sequelize from '../db.js';
-import Post from './Post.js';
+import { sequelize } from '../scripts/initDB.js';
 
 // Define user model
 
-const User = sequelize.define('User', {
-    first_name: {
+export const User = sequelize.define('User', {
+    firstName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    last_name: {
+    lastName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -20,5 +19,3 @@ const User = sequelize.define('User', {
         allowNull: false,
     },
 });
-
-export default User;
