@@ -1,0 +1,191 @@
+{
+    "info": {
+        "_postman_id": "aa80e3f8-690b-4b00-9a5c-11e1359045ba",
+        "name": "collective-blog",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "39328803"
+    },
+    "item": [
+        {
+            "name": "User requests",
+            "item": [
+                {
+                    "name": "Get all users",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/users",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["users"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get user by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/users/1",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["users", "1"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create User",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"firstName\": \"\",\r\n    \"lastName\": \"\",\r\n    \"email\": \"\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/users",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["users"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update user by ID",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"firstName\":\"Klara\",\r\n    \"lastName\":\"Fall-Obst\",\r\n    \"email\":\"klara@example.org\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3000/users/1",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "3000",
+                            "path": ["users", "1"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete user by ID",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/users/1",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["users", "1"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Post requests",
+            "item": [
+                {
+                    "name": "Get all posts",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/posts",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["posts"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get post by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/posts/1",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["posts", "1"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create post",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"title\": \"This is the Title of the Post.\",\r\n    \"content\": \"This is my first post. Postman helped.\",\r\n    \"cover\": \"https://i.ytimg.com/vi/YKNTN8bmmnM/maxresdefault.jpg\",\r\n    \"author\": \"get  name from userId\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/posts",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["posts"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update post by ID",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"title\": \"Edited post\",\r\n    \"content\": \"This is my first post. Postman helped.\",\r\n    \"cover\": \"https://i.ytimg.com/vi/YKNTN8bmmnM/maxresdefault.jpg\",\r\n    \"author\": \"2\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/posts/1",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["posts", "1"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}
