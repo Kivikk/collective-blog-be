@@ -1,6 +1,8 @@
 import { User, Post, Account } from '../models/index.js';
 import DB from '../db.js';
+import { ErrorResponse } from '../utils/ErrorResponse.js';
 import bcrypt from 'bcrypt';
+
 // #region Only for TESTS
 export const getUsers = async (req, res) => {
     try {
@@ -68,16 +70,12 @@ export const deleteUser = async (req, res) => {
 // #endregion
 
 export const getUserById = async (req, res) => {
-    try {
-        const {
-            params: { id },
-        } = req;
-        const user = await User.findByPk(id, { include: Post });
-        if (!user) return res.status(404).json({ error: 'User not found' });
-        res.json(user);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+    const {
+        params: { id },
+    } = req;
+    const user = await User.findByPk(id, { include: Post });
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json(user);
 };
 
 export const getProfile = async (req, res) => {
@@ -129,7 +127,7 @@ export const updateProfile = async (req, res) => {
                 {
                     where: { id: req.userId },
                     transaction: transaction,
-                    returning: true
+                    returning: true,
                 },
             );
 
@@ -141,7 +139,7 @@ export const updateProfile = async (req, res) => {
                 {
                     where: { id: req.userId },
                     transaction: transaction,
-                    returning: true
+                    returning: true,
                 },
             );
 

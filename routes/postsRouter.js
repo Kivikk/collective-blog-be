@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { checkIfPostExists } from '../middleware/checkPost.js';
 import { authenticate } from '../middleware/index.js';
 
 import {
@@ -14,6 +15,6 @@ export const postsRouter = Router();
 postsRouter.route('/').get(getPosts).post(authenticate, createPost);
 postsRouter
     .route('/:id')
-    .get(getPostById)
-    .put(authenticate, updatePost)
-    .delete(authenticate, deletePost);
+    .get(checkIfPostExists, getPostById)
+    .put(checkIfPostExists, authenticate, updatePost)
+    .delete(checkIfPostExists, authenticate, deletePost);

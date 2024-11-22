@@ -4,6 +4,7 @@ import { init } from './models/index.js';
 import { authRouter } from './routes/authRouter.js';
 import { postsRouter } from './routes/postsRouter.js';
 import { userRouter } from './routes/userRouter.js';
+import errorHandler from './middleware/errorHandler.js';
 import cors from 'cors'; 
 
 await init();
@@ -19,6 +20,6 @@ app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/posts', postsRouter);
 
-// console.log(process.env.PORT, process.env.PG_URI);
+app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server is running. Port: ${port}`));

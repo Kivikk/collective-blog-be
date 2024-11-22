@@ -1,5 +1,5 @@
 import { Router } from 'express';
-
+import { checkIfUserExists } from '../middleware/checkUser.js';
 import {
     getUsers,
     getUserById,
@@ -22,4 +22,8 @@ userRouter
     .put(authenticate, updateProfile)
     .delete(authenticate, deleteProfile);
 
-userRouter.route('/:id').get(getUserById).put(updateUser).delete(deleteUser);
+userRouter
+    .route('/:id')
+    .get(checkIfUserExists, getUserById)
+    .put(checkIfUserExists, updateUser)
+    .delete(checkIfUserExists, deleteUser);
