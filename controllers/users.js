@@ -1,5 +1,6 @@
 import { User } from '../models/User.js';
 import { Post } from '../models/Post.js';
+import { ErrorResponse } from '../utils/ErrorResponse.js';
 
 export const getUsers = async (req, res) => {
     try {
@@ -11,66 +12,51 @@ export const getUsers = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    try {
-        const {
-            body: { firstName, lastName, email },
-        } = req;
-        if (!firstName || !lastName || !email)
-            return res
-                .status(400)
-                .json({ error: 'firstName, lastName, and email are required' });
-        const found = await User.findOne({ where: { email } });
-        if (found)
-            return res.status(400).json({ error: 'User already exists' });
-        const user = await User.create(req.body);
-        res.json(user);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+    const {
+        body: { firstName, lastName, email },
+    } = req;
+    if (!firstName || !lastName || !email)
+        return res
+            .status(400)
+            .json({ error: 'firstName, lastName, and email are required' });
+    const found = await User.findOne({ where: { email } });
+    if (found) throw new ErrorResponse('User already exists', 400);
+    const user = await User.create(req.body);
+    res.json(user);
 };
 
 export const getUserById = async (req, res) => {
-    try {
-        const {
-            params: { id },
-        } = req;
-        const user = await User.findByPk(id, { include: Post });
-        if (!user) return res.status(404).json({ error: 'User not found' });
-        res.json(user);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+    const {
+        params: { id },
+    } = req;
+    const user = await User.findByPk(id, { include: Post });
+    res.json(user);
 };
 
 export const updateUser = async (req, res) => {
-    try {
-        const {
-            body: { firstName, lastName, email },
-            params: { id },
-        } = req;
-        if (!firstName || !lastName || !email)
-            return res
-                .status(400)
-                .json({ error: 'firstName, lastName, and email are required' });
-        const user = await User.findByPk(id);
-        if (!user) return res.status(404).json({ error: 'User not found' });
-        await user.update(req.body);
-        res.json(user);
-    } catch (error) {
+    const {
+        body: { firstName, lastName, email },
+        params: { id },
+    } = req;
+    if (!firstName || !lastName || !email)
+        return res
+            .status(400)
+            .json({ error: 'firstName, lastName, and email are required' });
+    const user = await User.findByPk(id);
+    if (!user) if (!user) throw new ErrorResponse('User not found', 404);
+    await user.update(req.body);
+    res.json(user);
+    {
         res.status(500).json({ error: error.message });
     }
 };
 
 export const deleteUser = async (req, res) => {
-    try {
-        const {
-            params: { id },
-        } = req;
-        const user = await User.findByPk(id);
-        if (!user) return res.status(404).json({ error: 'User not found' });
-        await user.destroy();
-        res.json({ message: 'User deleted' });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+    const {
+        params: { id },
+    } = req;
+    const user = await User.findByPk(id);
+    if (!user) if (!user) throw new ErrorResponse('User not found', 404);
+    await user.destroy();
+    res.json({ message: 'User deleted' });
 };

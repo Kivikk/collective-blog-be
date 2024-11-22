@@ -1,5 +1,5 @@
 import { Router } from 'express';
-
+import { checkIfUserExists } from '../middleware/checkUser.js';
 import {
     getUsers,
     getUserById,
@@ -11,4 +11,8 @@ import {
 export const userRouter = Router();
 
 userRouter.route('/').get(getUsers).post(createUser);
-userRouter.route('/:id').get(getUserById).put(updateUser).delete(deleteUser);
+userRouter
+    .route('/:id')
+    .get(checkIfUserExists, getUserById)
+    .put(checkIfUserExists, updateUser)
+    .delete(checkIfUserExists, deleteUser);
