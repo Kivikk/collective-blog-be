@@ -16,7 +16,7 @@ export const createPost = async (req, res) => {
         const post = req.body;
         post.user_id = req.userId;
                
-        console.log(post);
+        console.log("createPost:", post);
 
         if (!post.title || !post.content || !post.cover)
             return res
